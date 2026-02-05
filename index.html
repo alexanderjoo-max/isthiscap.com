@@ -55,10 +55,14 @@
         </div>
 
         <div class="input-grid">
-          <label class="input-area">
-            <span class="input-label">Paste text <button class="link" id="loadSample" type="button">Load sample text</button></span>
+          <div class="input-area">
+            <div class="input-label">
+              <span>Paste text</span>
+              <button class="link" id="loadSample" type="button">Load sample text</button>
+            </div>
+            <label for="textInput" class="sr-only">Paste text</label>
             <textarea id="textInput" placeholder="Paste emails, DMs, or transcripts here..."></textarea>
-          </label>
+          </div>
 
           <div class="upload-area">
             <label class="upload-drop" for="imageInput">
