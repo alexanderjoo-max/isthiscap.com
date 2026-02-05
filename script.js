@@ -13,6 +13,259 @@ const scoreLabel = document.getElementById("scoreLabel");
 
 const biasRules = [
   {
+    key: "deception",
+    label: "Deception / Lying",
+    weight: 30,
+    definition:
+      "Deception is knowingly presenting false information or withholding truth to shape outcomes.",
+    patterns: [
+      /i was lying/i,
+      /i lied/i,
+      /that's a lie/i,
+      /i wasn't being honest/i,
+      /i didn't tell you the truth/i,
+      /i just wanted to say something nice/i,
+      /i said .* so you would/i,
+      /i told you .* but/i,
+    ],
+    highlight: [
+      "i was lying",
+      "i lied",
+      "not being honest",
+      "didn't tell you the truth",
+      "just wanted to say",
+      "so you would",
+      "told you",
+    ],
+    explain:
+      "Admitting false statements or strategic omissions is a strong manipulation signal.",
+  },
+  {
+    key: "contradiction",
+    label: "Contradiction",
+    weight: 22,
+    definition:
+      "Contradiction is reversing a statement to avoid accountability or shift the narrative.",
+    patterns: [
+      /when i told you .* that was true.* but/i,
+      /i didn't .* at least/i,
+      /i should have said/i,
+      /i meant to say/i,
+      /i couldn't .* but/i,
+      /i said .* i didn't/i,
+    ],
+    highlight: [
+      "that was true",
+      "but",
+      "should have said",
+      "meant to say",
+      "i didn't",
+    ],
+    explain:
+      "Walk-backs and reversals muddy the truth and make it harder to trust.",
+  },
+  {
+    key: "shiftingreasons",
+    label: "Shifting Reasons",
+    weight: 18,
+    definition:
+      "Shifting reasons pile on after the fact to justify a decision.",
+    patterns: [
+      /it was .* and .* and/i,
+      /it was countless other things/i,
+      /there were so many reasons/i,
+      /it was deeper than that/i,
+      /it was the kind of/i,
+    ],
+    highlight: [
+      "countless other things",
+      "deeper than that",
+      "so many reasons",
+      "it was the kind of",
+    ],
+    explain:
+      "Adding reasons later can feel like rationalization rather than clarity.",
+  },
+  {
+    key: "strategicomission",
+    label: "Strategic Omission",
+    weight: 22,
+    definition:
+      "Strategic omission hides key details to steer how someone feels or decides.",
+    patterns: [
+      /i didn't tell you/i,
+      /i left out/i,
+      /i omitted/i,
+      /i kept that from you/i,
+      /i spared you the truth/i,
+      /i didn't have the heart to tell you/i,
+      /i couldn't bring myself to say/i,
+    ],
+    highlight: [
+      "didn't tell you",
+      "left out",
+      "omitted",
+      "kept that from you",
+      "spared you",
+      "didn't have the heart",
+    ],
+    explain:
+      "Withholding key info manipulates the narrative and denies informed choice.",
+  },
+  {
+    key: "futurefaking",
+    label: "Future-Faking",
+    weight: 18,
+    definition:
+      "Future-faking promises or hints at a future to keep someone invested without intent to deliver.",
+    patterns: [
+      /we will/i,
+      /someday/i,
+      /one day/i,
+      /when things settle/i,
+      /after this we'll/i,
+      /i can see us/i,
+    ],
+    highlight: ["someday", "one day", "when things settle", "after this", "see us"],
+    explain:
+      "Vague future promises can be used to delay accountability now.",
+  },
+  {
+    key: "emotionalmisdirection",
+    label: "Emotional Misdirection",
+    weight: 16,
+    definition:
+      "Emotional misdirection uses sentiment to dodge the actual issue or soften deception.",
+    patterns: [
+      /it would have taken a courage/i,
+      /our love/i,
+      /i just wanted to be nice/i,
+      /i didn't want to hurt you/i,
+      /for your own good/i,
+      /i meant well/i,
+    ],
+    highlight: [
+      "our love",
+      "wanted to be nice",
+      "didn't want to hurt you",
+      "for your own good",
+      "meant well",
+    ],
+    explain:
+      "Appealing to emotions can distract from the truth or impact.",
+  },
+  {
+    key: "doublebind",
+    label: "Double Bind",
+    weight: 16,
+    definition:
+      "Double binds create no-win situations where any response is wrong.",
+    patterns: [
+      /if you do.*you lose/i,
+      /either way/i,
+      /no matter what you do/i,
+      /you can't win/i,
+      /you're wrong either way/i,
+    ],
+    highlight: ["either way", "no matter what", "can't win", "wrong either way"],
+    explain:
+      "No-win framing traps the other person and blocks resolution.",
+  },
+  {
+    key: "blameshift",
+    label: "Blame Shifting",
+    weight: 18,
+    definition:
+      "Blame shifting moves responsibility away from the speaker to avoid accountability.",
+    patterns: [
+      /you made me/i,
+      /if you hadn't/i,
+      /this is on you/i,
+      /because of you/i,
+      /you pushed me/i,
+      /you forced me/i,
+    ],
+    highlight: ["you made me", "if you hadn't", "on you", "because of you", "forced me"],
+    explain:
+      "It reframes the speaker's actions as the other person's fault.",
+  },
+  {
+    key: "minimization",
+    label: "Minimization",
+    weight: 16,
+    definition:
+      "Minimization downplays harm to make it seem insignificant.",
+    patterns: [
+      /it's not a big deal/i,
+      /you're making a big deal/i,
+      /it was just/i,
+      /only joking/i,
+      /not that serious/i,
+      /just a joke/i,
+    ],
+    highlight: ["not a big deal", "just", "only joking", "not that serious", "joke"],
+    explain:
+      "Downplaying impact can invalidate the other person's feelings.",
+  },
+  {
+    key: "deflection",
+    label: "Deflection",
+    weight: 14,
+    definition:
+      "Deflection changes the subject or redirects blame to avoid the core issue.",
+    patterns: [
+      /what about you/i,
+      /that's not the point/i,
+      /anyway/i,
+      /let's talk about/i,
+      /you also/i,
+      /and you/i,
+    ],
+    highlight: ["what about you", "not the point", "anyway", "you also", "and you"],
+    explain:
+      "It sidesteps the original concern instead of addressing it.",
+  },
+  {
+    key: "invalidating",
+    label: "Invalidation",
+    weight: 20,
+    definition:
+      "Invalidation dismisses someone's feelings or experience.",
+    patterns: [
+      /you're too sensitive/i,
+      /overreacting/i,
+      /stop being dramatic/i,
+      /you're imagining things/i,
+      /you're taking it wrong/i,
+    ],
+    highlight: [
+      "too sensitive",
+      "overreacting",
+      "dramatic",
+      "imagining things",
+      "taking it wrong",
+    ],
+    explain:
+      "Dismissing emotions can make someone doubt themselves.",
+  },
+  {
+    key: "guilttrip",
+    label: "Guilt Tripping",
+    weight: 18,
+    definition:
+      "Guilt tripping uses remorse or obligation to control behavior.",
+    patterns: [
+      /after all i've done/i,
+      /i guess i don't matter/i,
+      /you owe me/i,
+      /if you cared/i,
+      /i did this for you/i,
+    ],
+    highlight: ["after all i've done", "don't matter", "owe me", "if you cared"],
+    explain:
+      "It pressures someone to comply out of guilt rather than choice.",
+  },
+  {
     key: "mixed",
     label: "Mixed Signals",
     weight: 20,
@@ -1147,8 +1400,18 @@ const analyzeSentence = (sentence) => {
 
 const scoreConversation = (sentences, findings) => {
   const base = findings.reduce((sum, finding) => sum + finding.weight, 0);
+  const counts = findings.reduce((map, finding) => {
+    map[finding.key] = (map[finding.key] || 0) + 1;
+    return map;
+  }, {});
+  const clusterPenalty = Object.entries(counts).reduce((sum, [key, count]) => {
+    if (count <= 1) return sum;
+    const rule = biasRules.find((item) => item.key === key);
+    if (!rule) return sum;
+    return sum + (count - 1) * Math.round(rule.weight * 0.5);
+  }, 0);
   const density = sentences.length ? base / sentences.length : 0;
-  const raw = Math.min(100, Math.round(density + base * 0.6));
+  const raw = Math.min(100, Math.round(density + base * 0.6 + clusterPenalty));
   return Math.max(0, raw);
 };
 
