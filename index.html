@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Is this cap?!</title>
+    <title>Is this cap?! 🧢</title>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
     <link rel="preconnect" href="https://unpkg.com" />
@@ -16,7 +16,7 @@
       <header class="hero">
         <div class="brand">
           <div>
-            <h1>Is this cap?!</h1>
+            <h1>Is this cap?! 🧢</h1>
             <p class="tagline">Paste a conversation or upload a screenshot. We scan for gaslighting, bias, sarcasm, and passive aggression.</p>
           </div>
         </div>
@@ -60,8 +60,7 @@
               <span>Paste text</span>
               <button class="link" id="loadSample" type="button">Load sample text</button>
             </div>
-            <label for="textInput" class="sr-only">Paste text</label>
-            <textarea id="textInput" placeholder="Paste emails, DMs, or transcripts here..."></textarea>
+            <textarea id="textInput" aria-label="Paste text" placeholder="Paste emails, DMs, or transcripts here..."></textarea>
           </div>
 
           <div class="upload-area">
