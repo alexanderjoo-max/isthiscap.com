@@ -304,7 +304,7 @@ textarea {
 }
 
 .score {
-  font-size: 3.2rem;
+  font-size: 6.4rem;
   font-weight: 700;
   color: var(--accent);
 }
@@ -557,5 +557,15 @@ textarea {
   .results-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .primary {
+    font-size: 1.1rem;
+    padding: 16px 28px;
+    justify-content: center;
+  }
+
+  .score {
+    font-size: 4.2rem;
   }
 }
