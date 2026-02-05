@@ -374,6 +374,39 @@ textarea {
   gap: 12px;
 }
 
+.bias-details {
+  margin-top: 12px;
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+}
+
+.bias-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  list-style: none;
+}
+
+.bias-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.bias-details summary::after {
+  content: "▾";
+  float: right;
+  color: var(--muted);
+}
+
+.bias-details[open] summary::after {
+  content: "▴";
+}
+
+.bias-details .bias-grid {
+  margin-top: 12px;
+}
+
 .bias-card {
   padding: 12px 14px;
   border-radius: 10px;

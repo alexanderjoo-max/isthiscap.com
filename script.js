@@ -7,6 +7,7 @@ const analysisOutput = document.getElementById("analysisOutput");
 const scoreValue = document.getElementById("scoreValue");
 const scoreFill = document.getElementById("scoreFill");
 const biasSummary = document.getElementById("biasSummary");
+const biasCount = document.getElementById("biasCount");
 const ocrStatus = document.getElementById("ocrStatus");
 const loadSample = document.getElementById("loadSample");
 const scoreLabel = document.getElementById("scoreLabel");
@@ -1425,11 +1426,14 @@ const renderSummary = (findingCounts) => {
       count: findingCounts[rule.key]?.count ?? 0,
       index,
     }))
-    .sort((a, b) => (b.count - a.count) || (a.index - b.index));
+    .filter((item) => item.count === 0)
+    .sort((a, b) => (a.index - b.index));
+
+  biasCount.textContent = `${ordered.length}`;
 
   ordered.forEach((data) => {
     const card = document.createElement("div");
-    card.className = data.count > 0 ? "bias-card hit" : "bias-card";
+    card.className = "bias-card";
     card.innerHTML = `
       <strong>${data.label}</strong>
       <span class="muted">${data.count} hits</span>
