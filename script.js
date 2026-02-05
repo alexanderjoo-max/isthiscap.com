@@ -1518,7 +1518,10 @@ const runAnalysis = () => {
 
   scoreLabel.classList.remove("status-green", "status-yellow", "status-orange", "status-red");
 
-  if (score <= 25) {
+  if (score === 0) {
+    scoreLabel.textContent = "No cap fam";
+    scoreLabel.classList.add("status-green");
+  } else if (score <= 25) {
     scoreLabel.textContent = "Reasonable amount of cap";
     scoreLabel.classList.add("status-green");
   } else if (score <= 50) {
