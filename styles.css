@@ -280,9 +280,9 @@ textarea {
 
 .results {
   animation: fadeIn 0.4s ease;
-  background: #1b1b1b;
+  background: #262626;
   color: #f3f3f3;
-  border-color: #2a2a2a;
+  border-color: #343434;
 }
 
 .ghost.gray {
@@ -310,7 +310,7 @@ textarea {
   justify-content: center;
   flex-direction: column;
   gap: 16px;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #343434;
   padding-bottom: 20px;
   text-align: center;
 }
@@ -320,7 +320,7 @@ textarea {
 }
 
 .score-block {
-  background: #232323;
+  background: #2c2c2c;
   border-radius: 12px;
   padding: 16px 20px;
   text-align: center;
@@ -376,7 +376,7 @@ textarea {
 
 .score-bar {
   height: 8px;
-  background: #2a2a2a;
+  background: #343434;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -407,10 +407,10 @@ textarea {
 
 .bias-details {
   margin-top: 12px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #343434;
   border-radius: 12px;
   padding: 12px 16px;
-  background: #1f1f1f;
+  background: #2b2b2b;
 }
 
 .bias-details summary {
@@ -441,8 +441,8 @@ textarea {
 .bias-card {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid #2a2a2a;
-  background: #202020;
+  border: 1px solid #343434;
+  background: #2b2b2b;
   display: grid;
   gap: 6px;
   position: relative;
@@ -456,8 +456,8 @@ textarea {
 .bias-tip {
   position: absolute;
   inset: auto 12px 12px 12px;
-  background: #232323;
-  border: 1px solid #2f2f2f;
+  background: #2c2c2c;
+  border: 1px solid #3a3a3a;
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 0.85rem;
@@ -485,8 +485,8 @@ textarea {
 .sentence {
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #2a2a2a;
-  background: #202020;
+  border: 1px solid #343434;
+  background: #2b2b2b;
 }
 
 .sentence.hit {
@@ -507,7 +507,7 @@ textarea {
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
-  background: #2a2a2a;
+  background: #343434;
   color: #f3f3f3;
 }
 
