@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Is this cap?!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  </head>
+  <body>
+    <div class="ambient"></div>
+    <main class="page">
+      <header class="hero">
+        <div class="brand">
+          <div>
+            <h1>Is this cap?!</h1>
+            <p class="tagline">Paste a conversation or upload a screenshot. We scan for gaslighting, bias, sarcasm, and passive aggression. 👀</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M8 12h8" />
+              <path d="M12 8v8" />
+            </svg>
+            <span>Bias 🧠</span>
+          </div>
+          <div class="icon-chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 5h14v10H8l-3 3z" />
+              <path d="M8 10h8" />
+            </svg>
+            <span>Tone 🎭</span>
+          </div>
+          <div class="icon-chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l8 5v8l-8 5-8-5V8z" />
+              <path d="M12 8v8" />
+            </svg>
+            <span>Signals 📌</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Drop the convo</h2>
+            <p>Paste text or upload an image. We'll highlight what feels off and explain why. 😵‍💫</p>
+          </div>
+          <button class="ghost gray" id="loadSample">Load sample text</button>
+        </div>
+
+        <div class="input-grid">
+          <label class="input-area">
+            <span>Paste text</span>
+            <textarea id="textInput" placeholder="Paste emails, DMs, or transcripts here..."></textarea>
+          </label>
+
+          <div class="upload-area">
+            <label class="upload-drop" for="imageInput">
+              <input id="imageInput" type="file" accept="image/*" />
+              <div class="upload-content">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="arrow-icon">
+                  <path d="M12 19V6" />
+                  <path d="M7 11l5-5 5 5" />
+                </svg>
+                <p>Upload screenshot</p>
+                <span class="muted">PNG, JPG, or WEBP</span>
+              </div>
+          </label>
+          <div class="upload-preview" id="imagePreview" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+          <button class="primary" id="analyzeBtn">
+            Analyze conversation
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="arrow-icon">
+              <path d="M5 12h13" />
+              <path d="M13 7l5 5-5 5" />
+            </svg>
+          </button>
+          <div class="muted">No data leaves your browser. <span id="ocrStatus">OCR runs locally in your browser when available.</span></div>
+        </div>
+      </section>
+
+      <section class="panel results" id="results" hidden>
+        <div class="results-header">
+          <div>
+            <h2>Reality Check</h2>
+            <p>We highlight patterns and explain why they might be manipulative or biased. 🧪</p>
+          </div>
+          <div class="score-block">
+            <div class="score-label">Bullshit score</div>
+            <div class="score-row">
+              <div class="score" id="scoreValue">0%</div>
+              <div class="score-status status-green" id="scoreLabel">Reasonable amount of cap</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-bar">
+          <div class="score-fill" id="scoreFill"></div>
+        </div>
+        <p class="score-note">The higher the %, the more you're being manipulated!</p>
+
+        <div class="bias-grid" id="biasSummary"></div>
+
+        <div class="analysis" id="analysisOutput"></div>
+      </section>
+    </main>
+  </body>
+</html>
